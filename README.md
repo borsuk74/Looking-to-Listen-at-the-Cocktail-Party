@@ -8,10 +8,10 @@
 ------------
 
 ### Requirement
-- Python3.7
+- Python3.6
 - TensorFlow 2.0.0
-- Keras 2.3.1
-- librosa 0.7.0
+- Keras 2.4.3
+- librosa 0.8.0
 - youtube-dl([https://github.com/ytdl-org/youtube-dl](https://github.com/ytdl-org/youtube-dl "https://github.com/ytdl-org/youtube-dl"))(**Any version**)
 - ffmpeg([https://www.ffmpeg.org/](https://www.ffmpeg.org/ "https://www.ffmpeg.org/"))（**Any version**）
 
@@ -39,7 +39,13 @@ python3 audio_norm.py # audio_data normalized
 ```
 2. Pre-processing audio data, including stft, Power-law, blending, generating complex masks, etc....
 ```shell
+Two versions of training implemented here:
+1. Full preprocessing for training according to train_my.py. It will require a lot of storage.
 python3 audio_data.py
+python3 AV_data_log.py
+2. Partial preprocessing, without storing  mixed stft and generated complex masks. 
+It will be generated dynamically and training should be done according to train_ds.py. 
+python3 audio_data_ds.py
 ```
 
 #### Face embedding Feature
@@ -67,7 +73,7 @@ gamma_loss = 0.1
 beta_loss = gamma_loss * 2
 ```
 
-- **Then use the script train.py to train**
+- **Then use the script train_my.py  to train in old way or train_ds.py to train with tf.data API.**
 
 ------------
 
